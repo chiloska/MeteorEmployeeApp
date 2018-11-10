@@ -1,14 +1,15 @@
 import React from "react";
 
-export default function EmployeeDetail(props) {
+export default function EmployeeDetail({ details }) {
   return (
     <div>
-      <div>
-        <img src={props.details.avatar} />
+      <div className="thumbnail">
+        <img src={details.avatar} />
       </div>
-      <label>{props.details.name}</label>
-      <label>{props.details.email}</label>
-      <label>{props.details.phone}</label>
+      <div className="caption">{details.name}</div>
+
+      <label>{details.email}</label>
+      <label>{details.phone}</label>
     </div>
   );
 }
