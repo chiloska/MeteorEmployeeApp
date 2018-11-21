@@ -9,13 +9,13 @@ import { Meteor } from "meteor/meteor";
 const PER_PAGE = 20;
 
 class EmployeeList extends Component {
-  // constructor() {
-  //   super(props);
-  //   this.state = {};
-  // }
+  componentWillMount() {
+    this.page = 1;
+  }
 
   handleButtonClick() {
-    Meteor.subscribe("employees", 40);
+    Meteor.subscribe("employees", PER_PAGE * (this.page + 1));
+    this.page++;
   }
 
   render() {
@@ -26,7 +26,10 @@ class EmployeeList extends Component {
             return <EmployeeDetail key={employee._id} details={employee} />;
           })}
         </div>
-        <button onClick={this.handleButtonClick()} className="btn btn-primary">
+        <button
+          onClick={this.handleButtonClick.bind(this)}
+          className="btn btn-primary"
+        >
           Load More
         </button>
       </div>
